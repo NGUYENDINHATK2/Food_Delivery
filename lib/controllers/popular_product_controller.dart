@@ -39,8 +39,10 @@ class PopularProductController extends GetxController {
   void setQuantity(bool isIncrement) {
     if (isIncrement) {
       _quantity = checkQuantity(quantity + 1);
+      print("number of items" + _quantity.toString());
     } else {
       _quantity = checkQuantity(quantity - 1);
+      print("decrement" + _quantity.toString());
     }
     update();
   }
@@ -73,7 +75,6 @@ class PopularProductController extends GetxController {
   }
 
   void addItem(ProductElement productElement) {
-    // if (_quantity > 0) {
     _cart.addItem(productElement, _quantity);
     _quantity = 0;
     _inCartItems = _cart.getQuantily(productElement);
@@ -83,12 +84,10 @@ class PopularProductController extends GetxController {
           " and this is quantity" +
           value.quantity.toString());
     });
-    // Get.snackbar("Item count", "Item added to cart",
-    //     backgroundColor: AppColors.mainColor, colorText: Colors.white);
-    // } else {
-    //   Get.snackbar("Item count", "Quantity can't be less than 0",
-    //       backgroundColor: const Color.fromARGB(255, 218, 137, 137),
-    //       colorText: Colors.white);
-    // }
+    update();
+  }
+
+  int get totalItems {
+    return _cart.totalItems;
   }
 }

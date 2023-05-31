@@ -28,7 +28,7 @@ class RouterHelper {
           pageId: int.parse(pageId!),
         );
       },
-      transition: Transition.fadeIn,
+      transition: Transition.cupertino,
       transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
@@ -37,7 +37,7 @@ class RouterHelper {
         var pageId = Get.parameters['pageId'];
         return RecommenedFoodDetail(pageId: int.parse(pageId!));
       },
-      transition: Transition.fadeIn,
+      transition: Transition.cupertino,
     ),
   ];
 }
