@@ -129,7 +129,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(RouterHelper.getRecommendedFood());
+                        Get.toNamed(RouterHelper.getRecommendedFood(index));
                       },
                       child: Container(
                         margin: EdgeInsets.only(
@@ -147,7 +147,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                               image: const DecorationImage(
                                 fit: BoxFit.cover,
                                 image: NetworkImage(
-                                    'https://cdn.tgdd.vn//GameApp/-1//cach-choi-kazuha-genshin-impact-thong-tin-guide-skill-moi-thumb-800x450.jpg'),
+                                    'https://cdn.sforum.vn/sforum/wp-content/uploads/2023/01/Raiden-Shogun-Build-Guide-For-Genshin-Impact.jpg'),
                               ),
                             ),
                           ),
@@ -181,13 +181,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                     SmallText(
                                         text: recommenededProduct
                                             .recommenededProductList[index]
-                                            .description!),
-                                    Row(
+                                            .location!),
+                                    const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
-                                      children: const [
+                                      children: [
                                         IconAndTextWidget(
                                             icon: Icons.circle_sharp,
                                             text: "Normal",
@@ -268,7 +268,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     : const Color(0xFFf7b7b7),
                 image: const DecorationImage(
                   image: NetworkImage(
-                      'https://f24-zpc.zdn.vn/4646901457608819891/bc8c6150d21f0d41540e.jpg'),
+                      'https://cdn.sforum.vn/sforum/wp-content/uploads/2023/01/Raiden-Shogun-Build-Guide-For-Genshin-Impact.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),

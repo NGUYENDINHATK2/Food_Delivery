@@ -50,10 +50,10 @@ class AppColumn extends StatelessWidget {
         SizedBox(
           height: Dimensions.height10,
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             IconAndTextWidget(
                 icon: Icons.circle_sharp,
                 text: "No",

@@ -5,14 +5,19 @@ import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/recommeneded_product_controller.dart';
 import '../../routers/router_helper.dart';
 import '../../widgets/exandable_text_widget.dart';
 
 class RecommenedFoodDetail extends StatelessWidget {
-  const RecommenedFoodDetail({super.key});
+  final int pageId;
+
+  const RecommenedFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product = Get.find<RecommenededProductController>()
+        .recommenededProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -45,7 +50,7 @@ class RecommenedFoodDetail extends StatelessWidget {
                         topRight: Radius.circular(30))),
                 child: Center(
                     child: BigText(
-                  text: "Nguyen Van A",
+                  text: product.name!,
                   size: Dimensions.fontSize26,
                 )),
               ),
@@ -66,9 +71,7 @@ class RecommenedFoodDetail extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(
                       left: Dimensions.widtht20, right: Dimensions.widtht20),
-                  child: const ExandableTextWidget(
-                      text:
-                          "This is an e-an e-commerce app for food delivery using flutter with backend as crash course tutorial for iOS and Android. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders, signup or registration, sign-in or login, paymentan e-commerce app for food delivery using flutter with backend as crash course tutorial for iOS and Android. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders, signup or registration, sign-in or login, paymentcommerce app for food delivery using flutter with backend as crash course tutorial for iOS and Android. This is a shopping app with backend of Laravel and Laravel admin panel using restful api complete CRUD operations. We also used firebase for notification. This tutorial covers complete shopping cart, placing orders, signup or registration, sign-in or login, payment."),
+                  child: ExandableTextWidget(text: product.description!),
                 )
               ],
             ),
@@ -93,7 +96,7 @@ class RecommenedFoodDetail extends StatelessWidget {
                 iconSize: Dimensions.iconSize24,
               ),
               BigText(
-                text: "\$12.88 X  0 ",
+                text: "\$ ${product.price} X  0 ",
                 color: AppColors.mainBlackColor,
                 size: Dimensions.fontSize20,
               ),
