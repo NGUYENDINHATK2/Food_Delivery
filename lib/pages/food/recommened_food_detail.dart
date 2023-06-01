@@ -10,6 +10,7 @@ import '../../controllers/cart_controller.dart';
 import '../../controllers/recommeneded_product_controller.dart';
 import '../../routers/router_helper.dart';
 import '../../widgets/exandable_text_widget.dart';
+import '../cart/cart_page.dart';
 
 class RecommenedFoodDetail extends StatelessWidget {
   final int pageId;
@@ -40,32 +41,37 @@ class RecommenedFoodDetail extends StatelessWidget {
                         },
                         child: const AppIcon(icon: Icons.clear)),
                     GetBuilder<PopularProductController>(builder: (controller) {
-                      return Stack(
-                        children: [
-                          const AppIcon(icon: Icons.shopping_cart_outlined),
-                          Get.find<PopularProductController>().totalItems >= 1
-                              ? Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: Container(
-                                    width: 20,
-                                    height: 20,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      color: AppColors.mainColor,
-                                      borderRadius: BorderRadius.circular(20),
+                      return GestureDetector(
+                        onTap: () {
+                          Get.to(() => const CartPage());
+                        },
+                        child: Stack(
+                          children: [
+                            const AppIcon(icon: Icons.shopping_cart_outlined),
+                            Get.find<PopularProductController>().totalItems >= 1
+                                ? Positioned(
+                                    right: 0,
+                                    top: 0,
+                                    child: Container(
+                                      width: 20,
+                                      height: 20,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.mainColor,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: BigText(
+                                        text: Get.find<PopularProductController>()
+                                            .totalItems
+                                            .toString(),
+                                        size: 12,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                    child: BigText(
-                                      text: Get.find<PopularProductController>()
-                                          .totalItems
-                                          .toString(),
-                                      size: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                )
-                              : Container(),
-                        ],
+                                  )
+                                : Container(),
+                          ],
+                        ),
                       );
                     })
                   ]),

@@ -20,6 +20,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
         child: Column(
           children: <Widget>[
             // header
+            // ignore: avoid_unnecessary_containers
             Container(
               child: Container(
                 margin: EdgeInsets.only(

@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:food_delivery/models/products_model.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/cart_repo.dart';
 import '../models/cart_model.dart';
+import '../utils/colors.dart';
 
 class CartController extends GetxController {
   final CartRepo cartRepo;
@@ -43,6 +45,7 @@ class CartController extends GetxController {
             time: DateTime.now().toString(),
           );
         });
+        Get.snackbar("Success", "Item added to cart",backgroundColor: AppColors.mainColor, colorText: Colors.white);
       } else {
         Get.snackbar("Error", "Quantity can't be less than 0");
       }
@@ -77,5 +80,9 @@ class CartController extends GetxController {
       total += value.quantity!;
     });
     return total;
+  }
+
+  List<CartModel> get getItems {
+    return _cartList.entries.map((e) => e.value).toList();
   }
 }

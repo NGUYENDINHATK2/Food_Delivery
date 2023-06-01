@@ -18,7 +18,7 @@ class RouterHelper {
     GetPage(
       name: initial,
       page: () => const MainFoodPage(),
-      transition: Transition.fade,
+      transition: Transition.cupertino,
     ),
     GetPage(
       name: popularFood,
