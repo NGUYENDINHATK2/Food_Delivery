@@ -27,6 +27,7 @@ class CartController extends GetxController {
           quantity: value.quantity! + quantity,
           isExist: true,
           time: DateTime.now().toString(),
+          product: product,
         );
       });
       if (totalQuantity <= 0) {
@@ -43,6 +44,7 @@ class CartController extends GetxController {
             quantity: quantity,
             isExist: true,
             time: DateTime.now().toString(),
+            product: product,
           );
         });
         Get.snackbar("Success", "Item added to cart",backgroundColor: AppColors.mainColor, colorText: Colors.white);
@@ -50,6 +52,7 @@ class CartController extends GetxController {
         Get.snackbar("Error", "Quantity can't be less than 0");
       }
     }
+    update();
   }
 
   bool existInCart(ProductElement product) {
@@ -78,6 +81,13 @@ class CartController extends GetxController {
     var total = 0;
     _cartList.forEach((key, value) {
       total += value.quantity!;
+    });
+    return total;
+  }
+  int get totalAmount {
+    var total = 0;
+    _cartList.forEach((key, value) {
+      total += value.quantity! * value.price!;
     });
     return total;
   }

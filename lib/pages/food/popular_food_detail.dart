@@ -14,8 +14,8 @@ import '../cart/cart_page.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   int pageId;
-
-  PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
+  final String page;
+  PopularFoodDetail({Key? key, required this.pageId,required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +54,20 @@ class PopularFoodDetail extends StatelessWidget {
               children: <Widget>[
                 GestureDetector(
                     onTap: () {
-                      Get.toNamed(RouterHelper.initial);
+                     if(page=="cartPage"){
+                        Get.toNamed(RouterHelper.getCartPage());
+                     }
+                     else{
+                       Get.toNamed(RouterHelper.getInitial());
+                     }
                     },
                     child: const AppIcon(icon: Icons.arrow_back_ios)),
                 GetBuilder<PopularProductController>(builder: (controller) {
                   return GestureDetector(
                     onTap: () {
-                      Get.to(() => const CartPage());
+                      if(controller.totalItems >= 1){
+                        Get.toNamed(RouterHelper.getCartPage());
+                      }
                     },
                     child: Stack(
                       children: [
@@ -132,7 +139,7 @@ class PopularFoodDetail extends StatelessWidget {
           // exandable text widget
         ],
       ),
-      bottomNavigationBar: GetBuilder<PopularProductController>(
+       bottomNavigationBar: GetBuilder<PopularProductController>(
         builder: (popularProduct) {
           return Container(
             height: Dimensions.bottomHeightBar,

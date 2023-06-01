@@ -50,7 +50,6 @@ class PopularProductController extends GetxController {
     if ((_inCartItems + quantity) < 0) {
       Get.snackbar("Error", "Quantity can't be less than 0",
           backgroundColor: AppColors.mainColor, colorText: Colors.white);
-
       if (_inCartItems > 0) {
         _quantity = -_inCartItems;
         return _quantity;
