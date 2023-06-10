@@ -52,5 +52,6 @@ class CartModel {
         "quantity": quantity,
         "isExist": isExist,
         "time": time,
+        "product": product == null ? null : product!.toJson(),
       };
 }
