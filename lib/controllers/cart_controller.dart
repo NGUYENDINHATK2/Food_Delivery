@@ -62,7 +62,7 @@ class CartController extends GetxController {
     } else {
       return false;
     }
-  }
+ }
   getQuantily(ProductElement product) {
     var quantity = 0;
     if (_cartList.containsKey(product.id)) {
@@ -100,9 +100,17 @@ class CartController extends GetxController {
   }
   set setCart(List<CartModel> items){
     storageItems = items;
-    print("storage items are "+storageItems.length.toString());
+    // print("storage items are "+storageItems.length.toString());
     for(int i=0;i<storageItems.length;i++){
       _cartList.putIfAbsent(storageItems[i].product!.id!!, ()=>storageItems[i]);
     }
+  }
+  void addToHistory(){
+    cartRepo.addToCartHistoryList();
+    clear();
+  }
+  void clear() {
+    _cartList.clear();
+    update();
   }
 }

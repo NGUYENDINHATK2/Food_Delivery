@@ -75,7 +75,6 @@ class PopularProductController extends GetxController {
     if (exist) {
       _inCartItems = _cart.getQuantily(product);
     }
-    print("in cart items   is $_inCartItems" + product.id.toString());
   }
 
   void addItem(ProductElement productElement) {
@@ -83,10 +82,6 @@ class PopularProductController extends GetxController {
     _quantity = 0;
     _inCartItems = _cart.getQuantily(productElement);
     _cart.cartList.forEach((key, value) {
-      print("this id is" +
-          value.id.toString() +
-          " and this is quantity" +
-          value.quantity.toString());
     });
     update();
   }

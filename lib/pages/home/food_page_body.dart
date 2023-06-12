@@ -264,7 +264,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.borderRadius30),
                 color: index.isEven
-                    ? const Color(0xFF69c5df)
+                    ? AppColors.mainColor
                     : const Color(0xFFf7b7b7),
                 image: const DecorationImage(
                   image: NetworkImage(
