@@ -113,4 +113,9 @@ class CartController extends GetxController {
     _cartList.clear();
     update();
   }
+
+  List<CartModel> get getCartHistoryList {
+    return cartRepo.getCartHistoryList();
+  }
+
 }
