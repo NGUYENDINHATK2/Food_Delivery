@@ -12,18 +12,29 @@ import '../../routers/router_helper.dart';
 import '../../widgets/app_column.dart';
 import '../cart/cart_page.dart';
 
-class PopularFoodDetail extends StatelessWidget {
+class PopularFoodDetail extends StatefulWidget {
   int pageId;
   final String page;
   PopularFoodDetail({Key? key, required this.pageId,required this.page}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    var product =
-        Get.find<PopularProductController>().popularProductList[pageId];
-    Get.find<PopularProductController>()
-        .initProduct(product, Get.find<CartController>());
+  State<PopularFoodDetail> createState() => _PopularFoodDetailState();
 
+}
+
+class _PopularFoodDetailState extends State<PopularFoodDetail> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("hello");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var product = Get.find<PopularProductController>().popularProductList[widget.pageId];
+    Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -54,7 +65,7 @@ class PopularFoodDetail extends StatelessWidget {
               children: <Widget>[
                 GestureDetector(
                     onTap: () {
-                     if(page=="cartPage"){
+                     if(widget.page=="cartPage"){
                         Get.toNamed(RouterHelper.getCartPage());
                      }
                      else{
