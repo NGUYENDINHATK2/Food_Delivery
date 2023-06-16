@@ -16,12 +16,9 @@ class CartHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     var getCartHistoryList=Get.find<CartController>()
-        .getCartHistoryList.reversed.toList();
-
+        .getCartHistoryList().reversed.toList();
     Map<String,int> cartItemsOrder=Map();
-
     for(int i=0;i<getCartHistoryList.length;i++){
       if(cartItemsOrder.containsKey(getCartHistoryList[i].time)){
         cartItemsOrder.update(getCartHistoryList[i].time!,(value)=>++value);
@@ -34,15 +31,14 @@ class CartHistory extends StatelessWidget {
     }
     List<int> itemsPerOrder=cartOrderTimeToList();
     var listCouter=0;
-
     return Scaffold(
     body: Column(
         children: [
           Container(
             color: AppColors.mainColor,
             width: double.infinity,
-            height: 100,
-            padding: EdgeInsets.only(top: 45,left: 10,right: 10),
+            height: Dimensions.height10*10,
+            padding: EdgeInsets.only(top: Dimensions.height45,left: 10,right: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -50,7 +46,13 @@ class CartHistory extends StatelessWidget {
                   text: "Cart History",
                   color: Colors.white,
                 ),
-               const AppIcon(icon: Icons.shopping_cart_outlined,backgroundColor: AppColors.yellowColor,iconColor: Colors.white,)
+               GestureDetector(onTap: (){
+                  var test=Get.find<CartController>()
+                      .getCartHistoryList();
+                  for(int i=0;i<test.length;i++){
+                    print(test[i].time);
+                  }
+               },child: const AppIcon(icon: Icons.shopping_cart_outlined,backgroundColor: AppColors.yellowColor,iconColor: Colors.white,))
               ],
             ),
           ),
@@ -63,8 +65,9 @@ class CartHistory extends StatelessWidget {
                   child: ListView(
                 physics:const BouncingScrollPhysics(),
                 children: [
-                  for(int i=1;i<itemsPerOrder.length;i++)
+                  for(int i=0;i<itemsPerOrder.length;i++)
                     Container(
+                      height: Dimensions.height30*4,
                       margin: EdgeInsets.only(bottom: Dimensions.height20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,8 +90,8 @@ class CartHistory extends StatelessWidget {
                                     listCouter++;
                                   }
                                   return index<=2?Container(
-                                    height: 80,
-                                    width: 80,
+                                    height: Dimensions.height20*4,
+                                    width: Dimensions.height20*4,
                                     margin: EdgeInsets.only(right: Dimensions.widtht10/2),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
@@ -101,7 +104,7 @@ class CartHistory extends StatelessWidget {
                                 }),
                               ),
                               Container(
-                                height: 80,
+                                height: Dimensions.height20*4,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.end,
